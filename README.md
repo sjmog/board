@@ -1,3 +1,62 @@
+# Board
+
+Board is an open-source real-time whiteboard to which you can pin anything you like.
+
+If you can do it with JavaScript, you can put it on a Board.
+
+## Why
+
+There are a few real-time whiteboard apps out there that offer different components. But if you want a component that doesn't exist, you're out of luck until the developer makes it.
+
+Board components are React components that execute arbitrary JavaScript. They can make API calls, scrape the web – anything your browser can do, a Board component can do.
+
+You can create a new Board component with the built-in editor, mark properties as customisable, and then share them across Boards.
+
+Here's an example of a simple component: a Post-It. Make a new component, and add the following in the editor:
+
+```javascript
+class PostIt extends Board::Component {
+  this.state = { text: "Edit me!" }
+
+  render {
+    return(
+      <div contenteditable>{{this.state.text}}</div>
+    );
+  }
+}
+```
+
+Now you can pin this Post-It to a Board. Any state variables are editable either via the GUI or via the component's two-way data binding.
+
+Here's a more complex component, which fetches some data from an API using a given (editable) API key and displays it:
+
+```javascript
+class PriceComponent extends Board::Component {
+  this.state = { key: "some-api-key" }
+
+  this.price = () => {
+    const client = new ApiClient(this.key);
+    return client.fetchPrice();
+  }
+
+  render {
+    return( 
+      <div>{{ this.price() }}</div>
+    );
+  }
+}
+```
+
+## Ethos
+
+Board is open-source. While you can create private components, you're encouraged to share components you create with the community!
+
+## License
+
+MIT. Hack away!
+
+# Tech Stuff
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
